@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<body>
+    <attribute name="class" value="webinar-wrapper"/>
+    <referenceContainer name="page.top">
+        <block class="Inclusive\WebinarsEvents\Block\Product\Banner" name="event.banner" as="event.banner"
+               before="breadcrumbs" />
+    </referenceContainer>
+    <referenceBlock name="main.content">
+        <referenceBlock name="columns" remove="true" />
+        <container name="event.content.wrapper" as="event_content_wrapper" htmlTag="div" htmlClass="column main webinar-main-column">
+            <container name="event.description.wrapper" as="event_description_wrapper" htmlTag="div">
+                <block class="Inclusive\WebinarsEvents\Block\Product\Description" name="event.description" as="event.description" />
+            </container>
+            <block name="customer.customer.data" class="Magento\Customer\Block\CustomerData"
+                   template="Magento_Customer::js/customer-data.phtml"/>
+        </container>
+        <container name="event.book.wrapper" as="event_book_wrapper" htmlTag="div" htmlClass="sidebar sidebar-main webinar-side-column">
+            <container name="book.wrapper" htmlClass="bookWrapper" htmlTag="div">
+                <block class="Inclusive\WebinarsEvents\Block\Product\Book" name="event.book" as="event.book" />
+            </container>
+        </container>
+    </referenceBlock>
+    <referenceContainer name="go-to-top" remove="true"/>
+</body>
+</page>

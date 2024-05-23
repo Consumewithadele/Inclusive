@@ -1,0 +1,24 @@
+<?php
+/** @var \Inclusive\WebinarsEvents\Block\Product\Banner $this */
+
+$_imgUrl = $this->getBannerImageUrl();
+
+$cssClass = '';
+if ($_imgUrl) {
+    $cssClass .= ' page-title-wrapper-webinar-image';
+}
+
+?>
+<div class="page-title-wrapper <?= /* @escapeNotVerified */ $cssClass ?>"
+    <?php if ($_imgUrl): ?> style="background-image: url('<?= /* @escapeNotVerified */ $_imgUrl ?>');"<?php endif ?>>
+    <div class="page-title-container">
+        <div class="page-title-wrapper">
+            <h1 class="page-title-webinar" id="page-title-heading">
+                <?= $this->getBannerTitle(); ?>
+            </h1>
+            <!--<div class="page-subtitle-webinar">
+                <i class="icon-calendar"></i><span><?=  __('Posted ').$this->getProductPostedDate(); ?></span>
+            </div>-->
+        </div>
+    </div>
+</div>

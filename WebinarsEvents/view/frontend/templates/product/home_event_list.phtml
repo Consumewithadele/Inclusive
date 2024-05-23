@@ -1,0 +1,53 @@
+<?php
+
+$eventsData = $block->getEventListCollection();
+
+$_productCollection = $eventsData['collection'];
+
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+/** @var Inclusive\WebinarsEvents\Helper\Event $_eventHelper */
+$_eventHelper = $this->helper('Inclusive\WebinarsEvents\Helper\Event');
+
+/**
+ * @var $block \Inclusive\WebinarsEvents\Block\Home\Eventlist
+ */
+?>
+
+<?php if (!$_productCollection->getSize()): ?>
+	<h2 class="events-main-title"> <?= __('Events & Webinars') ?> </h2>
+    <div class="message info empty"><div><?=  __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: 
+		$scheduleData = $eventsData['schedule'];	
+	?>        
+    <h2 class="events-main-title"> <?= __('Events & Webinars') ?> </h2>
+    <div class="events-content">    
+
+        <?php foreach ($_productCollection as $key => $_product): ?>
+            <div class="event-row">
+                <div class="featured-event-tag <?= $_product->getTypeId() ?>">
+                    <span><?= $_product->getTypeId() ?></span>
+                </div>
+                <div class="featured-event-title">
+                    <strong><a href="<?= $_product->getProductUrl(); ?>"><?= $_product->getName(); ?></a></strong>
+                </div>
+                <?php if($eventDate = $_eventHelper->getSpecificNextEventDate($_product,$scheduleData[$_product->getId()])):?>
+                    <div class="featured-event-date">
+                    <?php if(!empty($eventDate)){ ?>
+                        <i class="icon-calendar"></i><span><?= $eventDate ?></span>
+                    <?php } ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+        require([
+            'jquery'
+        ],function($){
+            $(document).ready(function(){
+                $('.events-container').closest('.widget').removeClass('widget');
+            });
+        });
+    </script>

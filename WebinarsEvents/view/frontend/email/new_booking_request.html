@@ -1,0 +1,17 @@
+<!--@subject {{trans "Booking Request"}} @-->
+<!--@vars {
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var data.customerEmail":"Customer Email",
+"var data.eventDate":"Event Date",
+"var data.eventLocation":"Event Location",
+"var data.eventName":"Event name"
+} @-->
+
+<h1>{{trans "New Booking Request"}}</h1>
+<p>{{trans "Booking details:"}}</p>
+<ul>
+    <li>{{trans "Customer email:"}} {{var data.customerEmail|escape|nl2br}}</li>
+    <li>{{trans "Event:"}} {{var data.eventName|escape|nl2br}}</li>
+    <li>{{trans "Event Location:"}} {{var data.eventLocation|escape|nl2br}}</li>
+    <li>{{trans "Event Date:"}} {{var data.eventDate|escape|nl2br}}</li>
+</ul>

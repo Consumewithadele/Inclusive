@@ -1,0 +1,31 @@
+<?php
+/** @var \Inclusive\WebinarsEvents\Block\Product\Book $block */
+
+$WebformId = $block->getWebinarWebformId();
+?>
+<?php if(!empty($block->getSchedule()) && $WebformId): ?>
+    <div class="book-heading">
+        <h1><?= __('Book your place'); ?></h1>
+    </div>
+
+    <div class="form book-content">
+    <?php
+        echo $this->getLayout()->createBlock(
+            'VladimirPopov\WebForms\Block\Form',
+            null,
+            ['data'=>[
+                'webform_id' => $WebformId,
+                'template' => 'VladimirPopov_WebForms::webforms/form/default.phtml',
+            ]]
+        )->toHtml();
+    ?>
+    </div>
+<?php else: ?>
+    <!-- @TODO: When an event has no scheduled dates -->
+    <div class="book-heading">
+        <h1><?= __('Book your place'); ?></h1>
+    </div>
+    <div class="book-content">
+        <?= __('The event has no scheduled dates'); ?>
+    </div>
+<?php endif; ?>
